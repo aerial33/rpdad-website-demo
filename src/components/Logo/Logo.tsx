@@ -5,25 +5,35 @@ interface Props {
   className?: string
   loading?: 'lazy' | 'eager'
   priority?: 'auto' | 'high' | 'low'
+  color?: string
 }
 
-export const Logo = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
+const Logo = (props: Props) => {
+  // Temp logo from https://logoipsum.com/
+  const { loading: loadingFromProps, priority: priorityFromProps, className, color } = props
 
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || 'low'
-
   return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
-      alt="Payload Logo"
-      width={193}
-      height={34}
-      loading={loading}
-      fetchPriority={priority}
-      decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
-    />
+    <div className="flex items-center gap-2">
+      <span className="text-2xl font-bold" style={{ color }}>
+        Placeholder
+      </span>
+      <svg
+        width="50"
+        height="39"
+        viewBox="0 0 50 39"
+        fill={color}
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+      >
+        <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" stopColor={color}></path>
+        <path
+          d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z"
+          stopColor={color}
+        ></path>
+      </svg>
+    </div>
   )
 }
+export default Logo

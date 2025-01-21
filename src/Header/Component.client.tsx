@@ -6,8 +6,10 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
-import { HeaderNav } from './Nav'
+import Logo from '@/components/Logo/Logo'
+
+import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { DesktopNav } from './Nav/DesktopNav'
 
 interface HeaderClientProps {
   data: Header
@@ -16,6 +18,8 @@ interface HeaderClientProps {
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
+  const { scrollY } = useScroll()
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
@@ -29,13 +33,21 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
 
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setScrolled(latest > 250 ? true : false)
+  })
+
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
+    <header
+      className={`fixed top-0 z-50 w-full text-black transition-all duration-300 ease-out lg:px-12 ${
+        scrolled ? 'bg-neutral-950 py-3 shadow-xl text-white' : 'bg-neutral-950/0 py-6 shadow-none'
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl py-4 items-center justify-between text-current">
         <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+          <Logo loading="eager" priority="high" className="w-10" color="current-color" />
         </Link>
-        <HeaderNav data={data} />
+        <DesktopNav data={data} />
       </div>
     </header>
   )
