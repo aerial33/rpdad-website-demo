@@ -17,6 +17,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     <div className="hidden lg:flex items-center justify-between w-1/2">
       <nav className="flex gap-3 items-center text-current">
         {navItems.map((tab, i) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { enableDirectLink = false, enableDropdown = false } = tab
           return (
             <CMSLink
