@@ -6,6 +6,8 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
+import { en } from '@payloadcms/translations/languages/en'
+import { fr } from '@payloadcms/translations/languages/fr'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -49,6 +51,7 @@ export default buildConfig({
         },
       ],
     },
+
     components: {
       graphics: {
         Logo: '/components/Logo/Logo.tsx',
@@ -61,6 +64,10 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   collections: [Pages, Posts, Media, Categories, Users],
+  i18n: {
+    supportedLanguages: { en, fr },
+  },
+
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
