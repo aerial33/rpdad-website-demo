@@ -3,10 +3,9 @@
 import type { PayloadAdminBarProps } from 'payload-admin-bar'
 
 import { cn } from '@/utilities/cn'
-import { useSelectedLayoutSegments } from 'next/navigation'
+import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
 import { PayloadAdminBar } from 'payload-admin-bar'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 import './index.scss'
 
@@ -46,7 +45,7 @@ export const AdminBar: React.FC<{
 
   return (
     <div
-      className={cn(baseClass, 'py-2 bg-black text-white', {
+      className={cn(baseClass, 'py-2 bg-primary z-50 text-white', {
         block: show,
         hidden: !show,
       })}
