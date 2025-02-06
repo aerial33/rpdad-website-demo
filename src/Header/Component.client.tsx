@@ -6,8 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import Logo from '@/components/Logo/Logo'
-
+import { FullLogo } from '@/graphics/FullLogo'
 import { useMotionValueEvent, useScroll } from 'framer-motion'
 import { DesktopNav } from './Nav/DesktopNav'
 
@@ -45,7 +44,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     >
       <div className="mx-auto flex max-w-7xl py-4 items-center justify-between text-current">
         <Link href="/">
-          <Logo loading="eager" priority="high" className="w-10" color="current-color" />
+          <FullLogo />
         </Link>
         <DesktopNav data={data} />
       </div>
