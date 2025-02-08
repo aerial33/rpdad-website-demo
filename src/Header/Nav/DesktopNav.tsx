@@ -18,7 +18,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
   return (
     // Main container - hidden on mobile, flex on large screens
-    <div className="hidden w-1/2 justify-between gap-6 lg:flex">
+    <div className="hidden  justify-between gap-6 lg:flex">
       {/* Navigation menu */}
       <nav className="flex gap-6 items-center text-current">
         {navItems.map((tab, index) => {
@@ -106,75 +106,16 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                         </div>
                         {/* Colonne droite */}
                         <div className="col-span-12 grid grid-cols-2 grid-rows-2 gap-3 bg-slate-100 p-6 lg:col-span-8">
-                          {tab.navItems &&
-                            tab?.navItems?.map((navItem, navIndex) => {
-                              switch (navItem.style) {
-                                case 'default':
-                                  return (
-                                    <CMSLink
-                                      key={navIndex}
-                                      {...navItem.defaultLink?.link}
-                                      label=""
-                                      className="rounded border-2 border-neutral-200 bg-white p-3 transition-colors hover:bg-neutral-100"
-                                    >
-                                      <h3 className="mb-1 font-semibold text-blue-600">
-                                        {navItem.defaultLink?.link.label}
-                                      </h3>
-                                      <p className="text-xs">{navItem.defaultLink?.description}</p>
-                                    </CMSLink>
-                                  )
+                          {tab.navItems?.map((navItem, navIndex) => {
+                            // Détermine le renderer à utiliser en fonction du style de navItem
+                            // Utilise 'default' si le style n'existe pas dans renderers
+                            const renderer =
+                              navItem.style &&
+                              renderers[navItem.style in renderers ? navItem.style : 'default']
 
-                                case 'featured':
-                                  return (
-                                    <div key={navIndex} className="mb-6">
-                                      {navItem.featuredLink?.tag && (
-                                        <h3 className="text-lg font-bold mb-2 text-amber-500">
-                                          {navItem.featuredLink.tag}
-                                        </h3>
-                                      )}
-                                      {/* {navItem.featuredLink?.label && (
-                                        <p className=" mb-2 text-base">
-                                          {navItem.featuredLink?.links
-                                            ?.map((link) => link.link?.label)
-                                            .join(' - ')}
-                                        </p>
-                                      )} */}
-                                      <div className="space-y-2">
-                                        {navItem.featuredLink?.links?.map((link, linkIndex) => (
-                                          <CMSLink
-                                            key={linkIndex}
-                                            {...link.link}
-                                            label={link.link?.label || ''}
-                                            appearance="link"
-                                            className="text-gray-700 hover:text-gray-900 block text-sm"
-                                          />
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )
-                                case 'list':
-                                  return (
-                                    <div key={navIndex} className="mb-6">
-                                      {navItem.listLinks?.tag && (
-                                        <p className="text-xs font-semibold text-gray-500 uppercase mb-2">
-                                          {navItem.listLinks.tag}
-                                        </p>
-                                      )}
-                                      <div className="space-y-2">
-                                        {navItem.listLinks?.links?.map((link, linkIndex) => (
-                                          <CMSLink
-                                            key={linkIndex}
-                                            {...link.link}
-                                            label={link.link?.label || ''}
-                                            appearance="link"
-                                            className="text-gray-700 hover:text-gray-900 block text-sm"
-                                          />
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )
-                              }
-                            })}
+                            // Appelle le renderer s'il existe, sinon retourne null
+                            return renderer ? renderer(navItem, navIndex) : null
+                          })}
                         </div>
                       </div>
                     </motion.div>
@@ -190,7 +131,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
       {/* Right side buttons - phone and search */}
       <div className="flex items-center gap-4">
-        <Button size="default">
+        <Button size="default" variant="outline">
           <PhoneCall className="w-4 h-4 mr-2" />
           05 40 12 90 10
         </Button>
@@ -200,4 +141,57 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       </div>
     </div>
   )
+}
+
+const renderers = {
+  default: (navItem, navIndex) => (
+    <CMSLink
+      key={navIndex}
+      {...navItem.defaultLink?.link}
+      label=""
+      className="rounded border-2 border-neutral-200 bg-white p-3 transition-colors hover:bg-neutral-100"
+    >
+      <h3 className="mb-1 font-semibold text-blue-600">{navItem.defaultLink?.link.label}</h3>
+      <p className="text-xs">{navItem.defaultLink?.description}</p>
+    </CMSLink>
+  ),
+  featured: (navItem, navIndex) => (
+    <div key={navIndex} className="mb-6">
+      {navItem.featuredLink?.tag && (
+        <h3 className="text-lg font-bold mb-2 text-amber-500">{navItem.featuredLink.tag}</h3>
+      )}
+
+      <div className="space-y-2">
+        {navItem.featuredLink?.links?.map((link, linkIndex) => (
+          <CMSLink
+            key={linkIndex}
+            {...link.link}
+            label={link.link?.label || ''}
+            appearance="link"
+            className="text-gray-700 hover:text-gray-900 block text-sm"
+          />
+        ))}
+      </div>
+    </div>
+  ),
+  list: (navItem, navIndex) => (
+    <div key={navIndex} className="mb-6">
+      {navItem.listLinks?.tag && (
+        <p className="text-xs font-semibold text-gray-500 uppercase mb-2">
+          {navItem.listLinks.tag}
+        </p>
+      )}
+      <div className="space-y-2">
+        {navItem.listLinks?.links?.map((link, linkIndex) => (
+          <CMSLink
+            key={linkIndex}
+            {...link.link}
+            label={link.link?.label || ''}
+            appearance="link"
+            className="text-gray-700 hover:text-gray-900 block text-sm"
+          />
+        ))}
+      </div>
+    </div>
+  ),
 }
