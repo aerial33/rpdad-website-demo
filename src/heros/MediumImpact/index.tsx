@@ -24,7 +24,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
           </ul>
         )}
       </div>
-      <div className=" ">
+      <div className="overflow-hidden ">
         {media && typeof media === 'object' && (
           <div>
             <Media

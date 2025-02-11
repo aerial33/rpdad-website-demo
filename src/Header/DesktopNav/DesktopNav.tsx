@@ -2,6 +2,7 @@
 
 // Importing required types and components
 import { CMSLink } from '@/components/Link'
+import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import type { Header as HeaderType } from '@/payload-types'
 import { AnimatePresence, easeOut, motion } from 'framer-motion'
@@ -78,12 +79,15 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                       exit={{ opacity: 0, y: 15 }}
                       style={{ translateX: '-50%' }}
                       transition={{ duration: 0.3, ease: easeOut }}
-                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow-xl rounded-lg p-2 pt-4"
+                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow border border-primary rounded-2xl p-2 pt-4"
                     >
                       <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" />
-                      <div className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-slate-400" />
+                      <div
+                        style={{ clipPath: 'polygon(0 0, 100% 0, 50% 50%, 0% 100%' }}
+                        className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-primary bg-slate-50"
+                      />
                       {/* Contenu du menu */}
-                      <div className="grid h-fit w-full grid-cols-12 shadow-xl  lg:w-[600px] lg:shadow-none xl:w-[750px]">
+                      <div className="grid h-fit w-full grid-cols-12 shadow-xl lg:w-[600px] lg:shadow-none xl:w-[750px]">
                         {/* Colonne gauche */}
                         <div className="col-span-12 flex flex-col justify-between p-6 lg:col-span-4">
                           <h2 className="mb-2 text-xl font-semibold text-slate-800">{tab.label}</h2>
@@ -160,7 +164,9 @@ const renderers = {
       {navItem.featuredLink?.tag && (
         <h3 className="text-lg font-bold mb-2 text-amber-500">{navItem.featuredLink.tag}</h3>
       )}
-
+      <p>
+        <RichText data={navItem.featuredLink.label} enableGutter={false} />
+      </p>
       <div className="space-y-2">
         {navItem.featuredLink?.links?.map((link, linkIndex) => (
           <CMSLink

@@ -8,7 +8,8 @@ import type { Header } from '@/payload-types'
 
 import { FullLogo } from '@/graphics/FullLogo'
 import { useMotionValueEvent, useScroll } from 'framer-motion'
-import { DesktopNav } from './Nav/DesktopNav'
+import { DesktopNav } from './DesktopNav/DesktopNav'
+import { MobileNav } from './MobileNav/MobileNav'
 
 interface HeaderClientProps {
   data: Header
@@ -33,13 +34,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setScrolled(latest > 250 ? true : false)
+    setScrolled(latest > 150 ? true : false)
   })
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full text-black transition-all duration-300 ease-out lg:px-12 ${
-        scrolled ? 'bg-neutral-950 py-3 shadow-xl text-white' : 'bg-neutral-950/0 py-6 shadow-none'
+      className={`fixed top-0 z-50 w-full px-6 text-black transition-all duration-300 ease-out lg:px-12 ${
+        scrolled ? 'bg-white py-3 shadow-xl' : 'py-6 shadow-none'
       }`}
     >
       <div className="mx-auto flex max-w-7xl py-4 items-center justify-between text-current">
@@ -47,6 +48,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <FullLogo />
         </Link>
         <DesktopNav data={data} />
+        <MobileNav data={data} />
       </div>
     </header>
   )
