@@ -61,14 +61,6 @@
 
     --tw-prose-body: var(--text);
     --tw-prose-headings: var(--text);
-
-    /* Ajout des nouvelles variables de conteneur */
-    --container-padding: 1rem;
-    --container-padding-sm: 1rem;
-    --container-padding-md: 2rem;
-    --container-padding-lg: 2rem;
-    --container-padding-xl: 2rem;
-    --container-padding-2xl: 2rem;
   }
 
   /* Styles pour les titres */
@@ -178,5 +170,15 @@ body {
 
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
+  }
+  .container {
+    padding-inline: 1rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-inline: 2rem;
+    }
   }
 }
