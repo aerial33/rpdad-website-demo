@@ -1,95 +1,97 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+/*
+  ---break---
+*/
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
 
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: auto;
-    font-weight: auto;
-  }
-
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 90%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
-  }
-
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.5;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  :root {
+    --background: oklch(100% 0 0);
+    --foreground: oklch(27.63% 0.068 262.87);
+
+    --card: oklch(96% 0.01 240);
+    --card-foreground: oklch(27.63% 0.068 262.87);
+
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(27.63% 0.068 262.87);
+
+    --primary: oklch(31.7% 0.048 262.87);
+    --primary-foreground: oklch(97.2% 0.01 230);
+
+    --secondary: oklch(95.9% 0.01 230);
+    --secondary-foreground: oklch(31.7% 0.048 262.87);
+
+    --muted: oklch(95.9% 0.01 230);
+    --muted-foreground: oklch(51.6% 0.024 247.23);
+
+    --accent: oklch(95.9% 0.01 230);
+    --accent-foreground: oklch(31.7% 0.048 262.87);
+
+    --destructive: oklch(63.4% 0.195 29.23);
+    --destructive-foreground: oklch(97.2% 0.01 230);
+
+    --border: oklch(89.5% 0.015 240);
+    --input: oklch(90.8% 0.028 238.15);
+    --ring: oklch(27.63% 0.068 262.87);
+
+    --radius: 0.2rem;
+
+    --success: oklch(74% 0.078 196);
+    --warning: oklch(85% 0.157 89);
+    --error: oklch(86% 0.145 29.23);
+
+    --tw-prose-body: var(--text);
+    --tw-prose-headings: var(--text);
+
+    /* Ajout des nouvelles variables de conteneur */
+    --container-padding: 1rem;
+    --container-padding-sm: 1rem;
+    --container-padding-md: 2rem;
+    --container-padding-lg: 2rem;
+    --container-padding-xl: 2rem;
+    --container-padding-2xl: 2rem;
   }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+
+  /* Styles pour les titres */
+  h1 {
+    font-weight: normal;
+    margin-bottom: 0.25em;
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  /* Styles responsifs pour les écrans moyens et plus grands */
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -97,7 +99,84 @@ html {
   opacity: 0;
 }
 
-html[data-theme='dark'],
+/* 
+  This selector targets HTML elements with either a 'dark' or 'light' data-theme attribute
+  We set the opacity back to its initial value (1) once the theme is set
+  This prevents a flash of unstyled content (FOUC) during theme initialization
+  Works in conjunction with the "html { opacity: 0 }" rule above
+*/
+
 html[data-theme='light'] {
   opacity: initial;
+}
+
+@theme {
+  --font-inter: 'Inter', 'sans-serif';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+  ---break---
+*/
+
+* {
+  @apply border-border outline-ring/50;
+}
+body {
+  @apply bg-background text-foreground;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer utilities {
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
 }

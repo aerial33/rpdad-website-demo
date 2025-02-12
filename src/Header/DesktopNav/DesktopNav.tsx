@@ -19,7 +19,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
   return (
     // Main container - hidden on mobile, flex on large screens
-    <div className="hidden  justify-between gap-6 lg:flex">
+    <div className="hidden lg:flex justify-between gap-6">
       {/* Navigation menu */}
       <nav className="flex gap-6 items-center text-current">
         {navItems.map((tab, index) => {
@@ -77,9 +77,8 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 15 }}
-                      style={{ translateX: '-50%' }}
                       transition={{ duration: 0.3, ease: easeOut }}
-                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow border border-primary rounded-2xl p-2 pt-4"
+                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow-sm border border-primary rounded-2xl p-2 pt-4"
                     >
                       <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" />
                       <div
@@ -89,7 +88,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                       {/* Contenu du menu */}
                       <div className="grid h-fit w-full grid-cols-12 shadow-xl lg:w-[600px] lg:shadow-none xl:w-[750px]">
                         {/* Colonne gauche */}
-                        <div className="col-span-12 flex flex-col justify-between p-6 lg:col-span-4">
+                        <div className="col-span-12 lg:col-span-4 flex flex-col justify-between p-6">
                           <h2 className="mb-2 text-xl font-semibold text-slate-800">{tab.label}</h2>
                           <p className="mb-6 max-w-xs text-sm text-neutral-400">
                             {tab.description}
@@ -109,7 +108,7 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                           )}
                         </div>
                         {/* Colonne droite */}
-                        <div className="col-span-12 grid grid-cols-2 grid-rows-2 gap-3 bg-slate-100 p-6 lg:col-span-8">
+                        <div className="col-span-12 lg:col-span-8 grid grid-cols-2 grid-rows-2 gap-3 bg-slate-100 p-6">
                           {tab.navItems?.map((navItem, navIndex) => {
                             // Détermine le renderer à utiliser en fonction du style de navItem
                             // Utilise 'default' si le style n'existe pas dans renderers
@@ -164,9 +163,9 @@ const renderers = {
       {navItem.featuredLink?.tag && (
         <h3 className="text-lg font-bold mb-2 text-amber-500">{navItem.featuredLink.tag}</h3>
       )}
-      <p>
-        <RichText data={navItem.featuredLink.label} enableGutter={false} />
-      </p>
+
+      <RichText data={navItem.featuredLink.label} enableGutter={false} />
+
       <div className="space-y-2">
         {navItem.featuredLink?.links?.map((link, linkIndex) => (
           <CMSLink
