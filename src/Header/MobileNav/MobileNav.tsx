@@ -39,7 +39,7 @@ export const MobileNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             className="fixed left-0 top-0 flex h-screen w-full flex-col bg-white"
           >
             <div className="flex items-center justify-between p-6">
-              <Logo color="black" />
+              <Logo className="w-24 h-24" />
               <button onClick={handleClose} aria-label="Fermer le menu">
                 <X className="text-3xl text-neutral-950" />
               </button>

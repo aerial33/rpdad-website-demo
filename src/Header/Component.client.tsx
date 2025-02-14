@@ -6,7 +6,8 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { FullLogo } from '@/graphics/FullLogo'
+import { RpdaLogo } from '@/graphics/LogoRpdad'
+import { cn } from '@/lib/utils'
 import { useMotionValueEvent, useScroll } from 'framer-motion'
 import { DesktopNav } from './DesktopNav/DesktopNav'
 import { MobileNav } from './MobileNav/MobileNav'
@@ -39,13 +40,15 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full px-6 text-black transition-all duration-300 ease-out lg:px-12 ${
+      className={`fixed top-0 z-40 w-full px-6 text-black transition-all duration-300 ease-out lg:px-12 ${
         scrolled ? 'bg-white py-3 shadow-xl' : 'py-6 shadow-none'
       }`}
     >
       <div className="mx-auto flex max-w-7xl py-4 items-center justify-between text-current">
         <Link href="/">
-          <FullLogo />
+          <RpdaLogo
+            className={cn(scrolled ? 'w-20 h-16' : 'w-32', 'transition-all duration-300 ease-out')}
+          />
         </Link>
         <DesktopNav data={data} />
         <MobileNav data={data} />

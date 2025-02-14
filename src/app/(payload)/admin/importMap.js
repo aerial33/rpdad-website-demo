@@ -21,7 +21,7 @@ import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from 
 import { CustomRowLabelNavItems as CustomRowLabelNavItems_50fad7b62e1ba5d1034952cb18853e31 } from '@/Header/CustomRowLabelNavItems'
 import { default as default_25391bb246c1d60cf178de278309b30a } from '@/Header/CustomRowLabelTabs'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
-import { default as default_e93e9bd37dbcbcb6182f6bb2f2523bd9 } from 'src/components/Logo/Logo.tsx'
+import { default as default_9bcae99938dc292be0063ce32055e14c } from 'src/components/Logo/Logo'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -47,5 +47,5 @@ export const importMap = {
   "@/Header/CustomRowLabelNavItems#CustomRowLabelNavItems": CustomRowLabelNavItems_50fad7b62e1ba5d1034952cb18853e31,
   "@/Header/CustomRowLabelTabs#default": default_25391bb246c1d60cf178de278309b30a,
   "@/Footer/RowLabel#RowLabel": RowLabel_1f6ff6ff633e3695d348f4f3c58f1466,
-  "/components/Logo/Logo.tsx#default": default_e93e9bd37dbcbcb6182f6bb2f2523bd9
+  "/components/Logo/Logo#default": default_9bcae99938dc292be0063ce32055e14c
 }
