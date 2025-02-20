@@ -7,6 +7,7 @@ import {
   lexicalEditor,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
+import { TextColorFeature } from '@/components/RichText/features/fontColor/feature.server'
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -15,6 +16,7 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       UnderlineFeature(),
       BoldFeature(),
       ItalicFeature(),
+      TextColorFeature(),
       LinkFeature({
         enabledCollections: ['pages', 'posts'],
         fields: ({ defaultFields }) => {

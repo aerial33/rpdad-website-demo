@@ -8,6 +8,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { linkGroup } from '@/fields/linkGroup'
+import { TextColorFeature } from '@/components/RichText/features/fontColor/feature.server'
 
 export const hero: Field = {
   name: 'hero',
@@ -48,6 +49,7 @@ export const hero: Field = {
             HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
+            TextColorFeature(),
           ]
         },
       }),
