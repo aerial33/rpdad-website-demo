@@ -44,14 +44,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         scrolled ? 'bg-white py-3 shadow-xl' : 'py-6 shadow-none'
       }`}
     >
-      <div className="mx-auto flex max-w-7xl py-4 items-center justify-between text-current">
+      <div className="container grid grid-cols-12 py-4 items-center text-current">
         <Link href="/">
           <RpdaLogo
             className={cn(scrolled ? 'w-20 h-16' : 'w-32', 'transition-all duration-300 ease-out')}
           />
         </Link>
-        <DesktopNav data={data} />
-        <MobileNav data={data} />
+        <DesktopNav data={data} className="col-start-3 col-span-10" />
+        <MobileNav data={data} className="col-end-13 col-span-1 justify-items-end" />
       </div>
     </header>
   )

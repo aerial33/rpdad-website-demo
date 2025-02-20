@@ -11,7 +11,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 // Desktop navigation component that takes header data as prop
-export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
+export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
+  data,
+  className,
+}) => {
   // State to track which dropdown menu is currently open
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   // Get navigation items from header data
@@ -19,9 +22,9 @@ export const DesktopNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
   return (
     // Main container - hidden on mobile, flex on large screens
-    <div className="hidden lg:flex justify-between gap-6">
+    <div className={`hidden lg:flex justify-between ${className || ''}`}>
       {/* Navigation menu */}
-      <nav className="flex gap-6 items-center text-current">
+      <nav className="flex gap-5 items-center text-current">
         {navItems.map((tab, index) => {
           const { enableDirectLink, enableDropdown } = tab
 

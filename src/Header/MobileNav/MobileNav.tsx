@@ -16,7 +16,10 @@ const ANIMATION_DURATION = 0.3
 const ANIMATION_EASE = 'easeOut'
 
 // Composant principal optimisé
-export const MobileNav: React.FC<{ data: HeaderType }> = ({ data }) => {
+export const MobileNav: React.FC<{ data: HeaderType; className?: string }> = ({
+  data,
+  className,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const navItems = data?.tabs || []
 
@@ -24,9 +27,9 @@ export const MobileNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const handleOpen = useCallback(() => setIsOpen(true), [])
 
   return (
-    <div className="block lg:hidden">
+    <div className={`block lg:hidden ${className || ''}`}>
       <button onClick={handleOpen} className="block text-3xl" aria-label="Ouvrir le menu">
-        <Menu />
+        <Menu width={32} height={32} />
       </button>
 
       <AnimatePresence>
@@ -38,10 +41,10 @@ export const MobileNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             transition={{ duration: ANIMATION_DURATION, ease: ANIMATION_EASE }}
             className="fixed left-0 top-0 flex h-screen w-full flex-col bg-white"
           >
-            <div className="flex items-center justify-between p-6">
+            <div className="flex items-center justify-between p-6 container">
               <Logo className="w-24 h-24" />
               <button onClick={handleClose} aria-label="Fermer le menu">
-                <X className="text-3xl text-neutral-950" />
+                <X className="text-3xl text-neutral-950" width={32} height={32} />
               </button>
             </div>
 
