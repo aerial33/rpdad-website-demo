@@ -13,15 +13,6 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
 
 :root {
   --background: oklch(100% 0 0);
@@ -33,10 +24,10 @@
   --popover: oklch(100% 0 0);
   --popover-foreground: oklch(27.63% 0.068 262.87);
 
-  --primary: oklch(31.7% 0.048 262.87);
+  --primary: oklch(54.5% 0.185 350);
   --primary-foreground: oklch(97.2% 0.01 230);
 
-  --secondary: oklch(95.9% 0.01 230);
+  --secondary: oklch(70.5% 0.195 30);
   --secondary-foreground: oklch(31.7% 0.048 262.87);
 
   --muted: oklch(95.9% 0.01 230);
