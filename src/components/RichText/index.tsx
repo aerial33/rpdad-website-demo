@@ -15,12 +15,15 @@ import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import ColorJSXConverters from '@/components/RichText/extensions/lexical-extensions/converters/jsx'
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
 import { cn } from '@/utilities/cn'
+// Importez les convertisseurs JSX de payloadcms-lexical-ext
+// Utilisez une version simplifiée pour éviter les erreurs avec fs
 
 type NodeTypes =
   | DefaultNodeTypes
@@ -38,6 +41,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
+  ...ColorJSXConverters,
   blocks: {
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
     mediaBlock: ({ node }) => (

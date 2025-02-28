@@ -81,11 +81,11 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 15 }}
                       transition={{ duration: 0.3, ease: easeOut }}
-                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow-sm border border-primary rounded-2xl p-2 pt-4"
+                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 w-[600px] bg-slate-50 shadow-sm border-primary border rounded-2xl p-2 pt-4"
                     >
                       <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" />
                       <div
-                        style={{ clipPath: 'polygon(0 0, 100% 0, 50% 50%, 0% 100%' }}
+                        style={{ clipPath: 'polygon(0 0, 100% 0, 50% 50%, 0% 100%)' }}
                         className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-primary bg-slate-50"
                       />
                       {/* Contenu du menu */}

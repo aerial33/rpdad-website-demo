@@ -7,8 +7,10 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
+// import 'payloadcms-lexical-ext/client/client.css'
+import { TextColorFeature } from '../components/RichText/extensions/lexical-extensions'
+
 import { linkGroup } from '@/fields/linkGroup'
-import { TextColorFeature } from '@/components/RichText/features/fontColor/feature.server'
 
 export const hero: Field = {
   name: 'hero',

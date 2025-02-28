@@ -1,13 +1,13 @@
-import { Config } from 'payload'
 import {
   BoldFeature,
   ItalicFeature,
+  lexicalEditor,
   LinkFeature,
   ParagraphFeature,
-  lexicalEditor,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
-import { TextColorFeature } from '@/components/RichText/features/fontColor/feature.server'
+import { Config } from 'payload'
+import { TextColorFeature } from '../components/RichText/extensions/lexical-extensions'
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
