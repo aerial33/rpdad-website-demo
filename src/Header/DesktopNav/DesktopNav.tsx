@@ -22,9 +22,9 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
 
   return (
     // Main container - hidden on mobile, flex on large screens
-    <div className={`hidden lg:flex justify-between ${className || ''}`}>
+    <div className={`hidden justify-between lg:flex ${className || ''}`}>
       {/* Navigation menu */}
-      <nav className="flex gap-5 items-center text-current">
+      <nav className="flex items-center gap-5 text-current">
         {navItems.map((tab, index) => {
           const { enableDirectLink, enableDropdown } = tab
 
@@ -41,7 +41,7 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
                   {...tab.link}
                   label={tab.label}
                   appearance="link"
-                  className="relative text-current text-base font-semibold hover:underline-offset-8 hover:text-primary transition-all"
+                  className="relative text-base font-semibold text-current transition-all hover:text-primary hover:underline-offset-8"
                 />
               </div>
             )
@@ -61,11 +61,11 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
                   aria-expanded={openIndex === index}
                   aria-haspopup="true"
                   aria-controls={`dropdown-menu-${tab.label}`}
-                  className="flex relative items-center gap-1 text-current font-semibold hover:underline-offset-4 hover:text-primary transition-all focus:outline-none"
+                  className="relative flex items-center gap-1 font-semibold text-current transition-all hover:text-primary hover:underline-offset-4 focus:outline-none"
                 >
                   {tab.label}
                   <ChevronDownIcon
-                    className={`w-4 h-4 transition-transform ${
+                    className={`h-4 w-4 transition-transform ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
                   />
@@ -81,17 +81,17 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 15 }}
                       transition={{ duration: 0.3, ease: easeOut }}
-                      className="absolute left-1/2 top-full mt-4 -translate-x-1/2 bg-slate-50 shadow-sm border border-primary rounded-2xl p-2 pt-4"
+                      className="absolute top-full left-1/2 mt-4 -translate-x-1/2 rounded-2xl border border-primary bg-slate-50 py-4 pr-2 shadow-sm"
                     >
-                      <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" />
+                      <div className="absolute -top-6 right-0 left-0 h-6 bg-transparent" />
                       <div
                         style={{ clipPath: 'polygon(0 0, 100% 0, 50% 50%, 0% 100%' }}
-                        className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-primary bg-slate-50"
+                        className="absolute top-0 left-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-destructive bg-slate-100"
                       />
                       {/* Contenu du menu */}
-                      <div className="grid h-fit w-full grid-cols-12 shadow-xl lg:w-[600px] lg:shadow-none xl:w-[750px]">
+                      <div className="flex h-fit min-w-max">
                         {/* Colonne gauche */}
-                        <div className="col-span-12 lg:col-span-4 flex flex-col justify-between p-6">
+                        <div className="col-span-1 flex flex-col justify-between p-4">
                           <h2 className="mb-2 text-xl font-semibold text-slate-800">{tab.label}</h2>
                           <p className="mb-6 max-w-xs text-sm text-neutral-400">
                             {tab.description}
@@ -111,7 +111,7 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
                           )}
                         </div>
                         {/* Colonne droite */}
-                        <div className="col-span-12 lg:col-span-8 grid grid-cols-2 grid-rows-2 gap-3 bg-slate-100 p-6">
+                        <div className="col-span-1 flex flex-col gap-3 bg-slate-100 p-3">
                           {tab.navItems?.map((navItem, navIndex) => {
                             // Détermine le renderer à utiliser en fonction du style de navItem
                             // Utilise 'default' si le style n'existe pas dans renderers
@@ -138,11 +138,11 @@ export const DesktopNav: React.FC<{ data: HeaderType; className?: string }> = ({
       {/* Right side buttons - phone and search */}
       <div className="flex items-center gap-4">
         <Button size="default" variant="outline">
-          <PhoneCall className="w-4 h-4 mr-2" />
+          <PhoneCall className="mr-2 h-4 w-4" />
           05 40 12 90 10
         </Button>
-        <Link href="/search" className="flex items-center hover:opacity-75 transition-opacity">
-          <SearchIcon className="w-5 h-5 text-current" />
+        <Link href="/search" className="flex items-center transition-opacity hover:opacity-75">
+          <SearchIcon className="h-5 w-5 text-current" />
         </Link>
       </div>
     </div>
@@ -164,7 +164,7 @@ const renderers = {
   featured: (navItem, navIndex) => (
     <div key={navIndex} className="mb-6">
       {navItem.featuredLink?.tag && (
-        <h3 className="text-lg font-bold mb-2 text-amber-500">{navItem.featuredLink.tag}</h3>
+        <h3 className="mb-2 text-lg font-bold text-amber-500">{navItem.featuredLink.tag}</h3>
       )}
 
       <RichText data={navItem.featuredLink.label} enableGutter={false} />
@@ -176,7 +176,7 @@ const renderers = {
             {...link.link}
             label={link.link?.label || ''}
             appearance="link"
-            className="text-gray-700 hover:text-gray-900 block text-sm"
+            className="block text-sm text-gray-700 hover:text-gray-900"
           />
         ))}
       </div>
@@ -185,7 +185,7 @@ const renderers = {
   list: (navItem, navIndex) => (
     <div key={navIndex} className="mb-6">
       {navItem.listLinks?.tag && (
-        <p className="text-xs font-semibold text-gray-500 uppercase mb-2">
+        <p className="mb-2 text-xs font-semibold text-gray-500 uppercase">
           {navItem.listLinks.tag}
         </p>
       )}
@@ -196,7 +196,7 @@ const renderers = {
             {...link.link}
             label={link.link?.label || ''}
             appearance="link"
-            className="text-gray-700 hover:text-gray-900 block text-sm"
+            className="block text-sm text-gray-700 hover:text-gray-900"
           />
         ))}
       </div>
